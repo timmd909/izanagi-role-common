@@ -1,0 +1,14 @@
+---
+#
+# Update and upgrade all available packages
+#
+
+- name: Update APT keys
+  shell: apt-key update
+  when: skip_update == false
+
+- name: Update APT
+  apt: update_cache=yes
+  when: skip_update == false
+  notify:
+    - Upgrade Packages

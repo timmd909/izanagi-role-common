@@ -1,0 +1,5 @@
+
+- name: Upgrade Packages
+  apt: upgrade=yes
+  when: skip_update == false
+  sudo: yes

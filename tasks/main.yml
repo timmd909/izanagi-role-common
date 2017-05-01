@@ -1,0 +1,20 @@
+---
+
+
+- name: "Workaround for missing packages in Ubuntu 16.04 image"
+  raw: apt-get install python-minimal aptitude -y
+  sudo: yes
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
+
+- include: upgrade.yml
+  sudo: yes
+
+- include: utilities.yml
+  sudo: yes
+
+- name: Install ACL
+  sudo: yes
+  apt: name=acl state=present
+
+- include: user-env.yml
+  sudo: no

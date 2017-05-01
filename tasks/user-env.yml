@@ -1,0 +1,36 @@
+---
+
+- name: Disable screen startup message
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.screenrc"
+    line: "startup_message off"
+    create: yes
+    state: present
+
+- name: Make sure Vim config file exists
+  file:
+    path: "{{ ansible_env.HOME }}/.vimrc"
+    state: touch
+
+- name: Vim configuration settings update
+  lineinfile:
+    create: yes
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    line: "{{ item }}"
+    state: present
+  with_items:
+    - set tabstop=2
+    - syntax on
+    - colorscheme elflord
+
+- name: Configure VIM (for root)
+  sudo: yes
+  lineinfile:
+    create: yes
+    dest: "/root/.vimrc"
+    line: "{{ item }}"
+    state: present
+  with_items:
+    - set tabstop=2
+    - syntax on
+    - colorscheme elflord

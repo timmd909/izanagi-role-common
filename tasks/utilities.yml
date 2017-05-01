@@ -1,0 +1,27 @@
+---
+
+- name: Install necessary utilities
+  apt: "name={{ item }}"
+  with_items:
+    - locate
+    - lsof
+    - nmap
+    - python-mysqldb
+    - screen
+    - vim
+
+- name: Set VIM as default editor
+  alternatives:
+    name: editor
+    path: /usr/bin/vim
+
+- name: Install top-like programs
+  apt: "name={{ item }}"
+  with_items:
+    - htop
+    - iotop
+
+- name: Install build tools
+  apt: "name={{ item }}"
+  with_items:
+    - git
