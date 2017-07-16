@@ -8,6 +8,7 @@
     - nmap
     - python-mysqldb
     - screen
+    - unzip
     - vim
 
 - name: Set VIM as default editor
