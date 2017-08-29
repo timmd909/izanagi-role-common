@@ -5,7 +5,6 @@
   with_items:
     - locate
     - lsof
-    - nmap
     - python-mysqldb
     - screen
     - unzip
