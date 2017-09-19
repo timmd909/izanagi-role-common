@@ -3,6 +3,7 @@
 - name: Install necessary utilities
   apt: "name={{ item }}"
   with_items:
+    - bc
     - locate
     - lsof
     - python-mysqldb
