@@ -1,7 +1,4 @@
 ---
 
-# Whether to skip all APT updates, adding of keys, etc.
-skip_update: false
-
 # APT will only be updated if the cache is older than 6 hours
 apt_cache_valid_time: 21600

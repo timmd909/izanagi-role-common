@@ -5,10 +5,8 @@
 
 - name: Update APT keys
   shell: apt-key update
-  when: skip_update == false
 
 - name: Update APT
   apt: update_cache=yes cache_valid_time={{ apt_cache_valid_time }}
-  when: skip_update == false
   notify:
     - Upgrade Packages
