@@ -8,5 +8,3 @@
 
 - name: Update APT
   apt: update_cache=yes cache_valid_time={{ apt_cache_valid_time }}
-  notify:
-    - Upgrade Packages
