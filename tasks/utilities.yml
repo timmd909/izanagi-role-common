@@ -6,6 +6,7 @@
     - bc
     - locate
     - lsof
+    - pv
     - python-mysqldb
     - screen
     - unzip
