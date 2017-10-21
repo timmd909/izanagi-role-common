@@ -24,7 +24,8 @@
     - colorscheme elflord
 
 - name: Configure VIM (for root)
-  sudo: yes
+  become: yes
+  become_user: root
   lineinfile:
     create: yes
     dest: "/root/.vimrc"
