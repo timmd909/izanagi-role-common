@@ -6,11 +6,11 @@
 
 - include: utilities.yml
   become: yes
-  become_user: root 
+  become_user: root
 
 - name: Install ACL
   become: yes
-  become_user: root 
+  become_user: root
   apt: name=acl state=present
 
 - include: user-env.yml
