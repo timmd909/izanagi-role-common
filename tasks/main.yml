@@ -11,7 +11,7 @@
 - include: pi-only.yml
   become: yes
   become_user: root
-  when: ansible_nodename == "raspberrypi"
+  when: ansible_lsb.id == "Raspbian"
 
 - name: Install ACL
   become: yes
