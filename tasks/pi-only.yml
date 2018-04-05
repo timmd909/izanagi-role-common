@@ -1,0 +1,13 @@
+---
+
+#
+# Common configuration for all Raspberry Pis
+#
+
+# Can't imagine why I wouldn't want to have the camera always ready to go...
+# Enable everything and let god sort them out is not the Pi way apparently
+- name: 'Enable V4L Support for Raspberry Pi camera'
+  lineinfile:
+    line: bcm2835-v4l2
+    path: /etc/modules
+    state: present
