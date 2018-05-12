@@ -11,3 +11,9 @@
     line: bcm2835-v4l2
     path: /etc/modules
     state: present
+
+- name: Remove default Raspberry Pi user
+  user:
+    name: pi
+    state: absent
+    remove: yes
