@@ -29,7 +29,7 @@
     - htop
     - iotop
 
-- name: Install glances"
+- name: Install glances
   pip: name=glances
 
 - name: Install build tools
