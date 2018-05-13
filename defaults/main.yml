@@ -6,3 +6,6 @@ apt_cache_valid_time: 21600
 # Set to true to mount USB drives to `/media` instead
 # of `/media/$USER`
 udisk_filesystem_shared: false
+
+# Make sure to define this in all your hostnames
+hostname: unconfigured-server

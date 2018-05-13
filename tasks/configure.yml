@@ -1,0 +1,15 @@
+---
+
+- name: Update hostname
+  shell: hostname {{ hostname }}
+
+- name: Update /etc/hostname
+  copy:
+    content: "{{ hostname }}\n"
+    dest: /etc/hostname
+
+- name: Update /etc/hosts
+  template:
+    src: etc/hosts.j2
+    dest: /etc/hosts
+    mode: 0644
