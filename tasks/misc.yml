@@ -1,0 +1,12 @@
+---
+
+- name: Install ACL
+  apt: name=acl state=present
+
+- name: Update USB automount location
+  when: udisk_filesystem_shared
+  lineinfile:
+    path: /etc/udev/rules.d/99-udisks2.rules
+    create: yes
+    line: 'ENV{ID_FS_USAGE}=="filesystem", ENV{UDISKS_FILESYSTEM_SHARED}="1"'
+    state: present

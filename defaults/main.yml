@@ -2,3 +2,7 @@
 
 # APT will only be updated if the cache is older than 6 hours
 apt_cache_valid_time: 21600
+
+# Set to true to mount USB drives to `/media` instead
+# of `/media/$USER`
+udisk_filesystem_shared: false
