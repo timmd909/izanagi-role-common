@@ -8,6 +8,10 @@
   become: yes
   become_user: root
 
+- include: configure.yml
+  become: yes
+  become_user: root
+
 - include: pi-only.yml
   become: yes
   become_user: root
