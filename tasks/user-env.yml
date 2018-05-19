@@ -35,3 +35,15 @@
     - set tabstop=2
     - syntax on
     - colorscheme elflord
+
+- name: Generate SSH keys
+  shell: ssh-keygen -b 2048 -t rsa -f {{ ansible_env.HOME }}/.ssh/id_rsa -q -N ""
+  args:
+    creates: "{{ ansible_env.HOME }}/.ssh/id_rsa"
+
+- name: Generate SSH keys (root)
+  shell: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
+  become: yes
+  become_user: root
+  args:
+    creates: "/root/.ssh/id_rsa"
