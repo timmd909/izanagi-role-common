@@ -10,7 +10,7 @@
 - name: Make sure Vim config file exists
   file:
     path: "{{ ansible_env.HOME }}/.vimrc"
-    state: touch
+    state: file
 
 - name: Vim configuration settings update
   lineinfile:
