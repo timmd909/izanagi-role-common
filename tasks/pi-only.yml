@@ -17,3 +17,8 @@
     name: pi
     state: absent
     remove: yes
+
+- name: Remove sudo rule for Pi user
+  file:
+    path: /etc/sudoers.d/010_pi-nopasswd
+    state: absent
