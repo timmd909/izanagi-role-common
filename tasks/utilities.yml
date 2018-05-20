@@ -15,6 +15,7 @@
     - python-mysqldb
     - python-pip
     - screen
+    - tree
     - unzip
     - vim
 
