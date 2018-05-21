@@ -12,6 +12,9 @@
     path: /etc/modules
     state: present
 
+- name: "Install firmware for wireless"
+  apt: name=firmware-brcm80211 state=present
+
 - name: Remove default Raspberry Pi user
   user:
     name: pi
