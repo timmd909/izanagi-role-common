@@ -19,6 +19,23 @@
     - tree
     - unzip
     - vim
+    - whois  # the fuck?! Linux Mint 19 doesn't install this by default?! What
+    # sort of terrible world do we live in that has such an insane situation?!
+    # I swear... this is just too much. When I first found out that CS majors
+    # in college didn't know what version control was, I flipped shit.
+    # Seriously. Who the hell writes code without understanding how to
+    # properly save their progress? It's like someone with a structural
+    # engineering degree who can't build a birdhouse.
+    #
+    # What
+    #
+    # The
+    #
+    # Fuck
+    #
+    # Anyhoo, feeling pretty good. To future me ( or any sad panda who has
+    # to read my code): hope you're doing well. Hope you're fighting the good
+    # fight against the dark.
 
 - name: Set VIM as default editor
   alternatives:
