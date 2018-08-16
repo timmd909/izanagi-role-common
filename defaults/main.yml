@@ -9,3 +9,12 @@ udisk_filesystem_shared: false
 
 # Make sure to define this in all your hostnames
 hostname: unconfigured-server
+
+#
+# Swap file to work around Ubuntu's new bullshit one size fits all approach
+# to hard drive partitioning.
+#
+
+swapfile_enabled: false
+swapfile_path: /swapfile
+swapfile_size: 4G

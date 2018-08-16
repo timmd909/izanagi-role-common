@@ -21,4 +21,8 @@
   become: yes
   become_user: root
 
+- include: swapfile.yml
+  become: yes
+  become_user: root
+
 - include: user-env.yml

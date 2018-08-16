@@ -1,0 +1,56 @@
+
+#
+# Enabled
+#
+- name: "Create swapfile"
+  shell: fallocate -l {{ swapfile_size }} {{ swapfile_path }}
+  args:
+    creates: "{{ swapfile_path }}"
+  register: swapfile_created
+  when: swapfile_enabled == true
+
+- name: "Set swapfile permissions"
+  file:
+    path: "{{ swapfile_path }}"
+    mode: 600
+    owner: root
+    group: root
+  when: swapfile_enabled == true
+
+- name: "Format swapfile"
+  shell: mkswap {{ swapfile_path }}
+  register: swapfile_formatted
+  when: swapfile_enabled == true and swapfile_created.changed == true
+
+- name: "Enable swapfile"
+  shell: swapon {{ swapfile_path }}
+  when: swapfile_enabled == true and swapfile_formatted.changed == true
+
+- name: "Add to /etc/fstab"
+  lineinfile:
+    dest: /etc/fstab
+    line: "{{ swapfile_path }}   none    swap    sw    0   0"
+    state: present
+  when: swapfile_enabled == true
+
+#
+# Disabled
+#
+
+- name: "Remove from /etc/fstab"
+  lineinfile:
+    dest: /etc/fstab
+    line: "{{ swapfile_path }}   none    swap    sw    0   0"
+    state: absent
+  when: swapfile_enabled == false
+
+- name: "Disable swapfile"
+  shell: swapoff {{ swapfile_path }}
+  when: swapfile_enabled == false
+  ignore_errors: yes
+
+- name: Remove swapfile
+  file:
+    path: "{{ swapfile_path }}"
+    state: absent
+  when: swapfile_enabled == false
