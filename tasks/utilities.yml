@@ -40,6 +40,7 @@
   apt: name="{{ item }}" state=latest
   with_items:
     - mlocate
+    - whois
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
 
 - name: Set VIM as default editor
