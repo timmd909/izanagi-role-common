@@ -47,3 +47,8 @@
   become_user: root
   args:
     creates: "/root/.ssh/id_rsa"
+
+- name: Protect root home directory
+  file:
+    path: /root
+    mode: 0700
