@@ -1,48 +1,49 @@
 ---
 
-- name: Install useful libraries
-  apt: name="{{ item }}"
-  with_items:
-    - python-dev
+- name: Install python-dev libraries
+  apt: name=python-dev
 
 - name: 'Install necessary utilities (shared)'
-  apt: "name={{ item }}"
-  with_items:
-    - bc
-    - curl
-    - imagemagick
-    - lsof
-    - pv
-    - screen
-    - unzip
-    - vim
-    - wget
+  apt:
+    pkg:
+      - bc
+      - curl
+      - imagemagick
+      - lsof
+      - pv
+      - screen
+      - unzip
+      - vim
+      - wget
 
 - name: 'Python Utilities (Ubuntu 18.04)'
   apt:
-    name: ['python-mysqldb', 'python-pip', 'python-setuptools']
+    pkg:
+      - python-mysqldb
+      - python-pip
+      - python-setuptools
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
 
 - name: 'Utilities (Mint)'
-  apt: name="{{ item }}" state=latest
-  with_items:
-    - locate
-    - tree
-    - whois
+  apt:
+    pkg:
+      - locate
+      - tree
+      - whois
   when: ansible_distribution == 'Linux Mint'
 
 - name: 'Utilities (Ubuntu 16.04)'
-  apt: name="{{ item }}" state=latest
-  with_items:
-    - locate
-    - tree
+  apt:
+    pkg:
+      - locate
+      - tree
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
 
 - name: 'Utilities (Ubuntu 18.04)'
-  apt: name="{{ item }}" state=latest
-  with_items:
-    - mlocate
-    - whois
+  apt:
+    pkg:
+      - mlocate
+      - whois
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
 
 - name: Set VIM as default editor
@@ -51,10 +52,10 @@
     path: /usr/bin/vim
 
 - name: Install top-like programs
-  apt: "name={{ item }}"
-  with_items:
-    - htop
-    - iotop
+  apt:
+    pkg:
+      - htop
+      - iotop
 
 - name: Install glances (Ubuntu 18.04)
   pip: name=glances
@@ -64,7 +65,5 @@
   apt: name=glances
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '20.04'
 
-- name: Install build tools
-  apt: "name={{ item }}"
-  with_items:
-    - git
+- name: Install Git tools
+  apt: name=git state=present
