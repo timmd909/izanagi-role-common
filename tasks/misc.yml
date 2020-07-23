@@ -10,3 +10,6 @@
     create: yes
     line: 'ENV{ID_FS_USAGE}=="filesystem", ENV{UDISKS_FILESYSTEM_SHARED}="1"'
     state: present
+
+- name: Install HTTPS transport for APT
+  apt: name=apt-transport-https state=present

@@ -13,13 +13,15 @@
     - imagemagick
     - lsof
     - pv
-    - python-mysqldb
-    - python-pip
-    - python-setuptools
     - screen
     - unzip
     - vim
     - wget
+
+- name: 'Python Utilities (Ubuntu 18.04)'
+  apt:
+    name: ['python-mysqldb', 'python-pip', 'python-setuptools']
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
 
 - name: 'Utilities (Mint)'
   apt: name="{{ item }}" state=latest
@@ -54,8 +56,13 @@
     - htop
     - iotop
 
-- name: Install glances
+- name: Install glances (Ubuntu 18.04)
   pip: name=glances
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
+
+- name: Install glances (Ubuntu 20.04)
+  apt: name=glances
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '20.04'
 
 - name: Install build tools
   apt: "name={{ item }}"
