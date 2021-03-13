@@ -15,27 +15,45 @@
     mode: 0644
 
 # Thank you to https://askubuntu.com/questions/1028633/host-name-reverts-to-old-name-after-reboot-in-18-04-lts
+
 - name: See if that bullshit cloud shit is installed
   stat:
     path: /var/lib/cloud
   register: cloud_bullshit
 
-- debug:
-    msg: Bullshit cloud bullshit is installed
-  when: cloud_bullshit.stat.exists
-
-- name: Disable cloud init bullshit
-  file:
-    path: /etc/cloud/cloud-init.disabled
-    state: touch
-  when: cloud_bullshit.stat.exists
-
-- name: Update bullshit cloud configuration file
+- name: "Disable bullshit cloud shit"
   lineinfile:
-    regexp: "^hostname.*"
-    line: "hostname: {{ hostname }}"
-    dest: /var/lib/cloud/seed/nocloud-net/user-data
+    path: /etc/cloud/cloud.cfg
+    regexp: "^preserve_hostname.*"
+    line: "preserve_hostname: true"
   when: cloud_bullshit.stat.exists
-  # `cloud-init clean ; cloud-init init` will fix things if the hostname
-  # is wrong. The previous disabling task makes this a m00t point, but seems
-  # like a good idea to document here what took me forever to figure out.
+
+#
+# Below is the same way to avoid the hostname bullshit that worked well w/
+# Ubuntu desktops. With the Ubuntu 20.04 server install, this fails but
+# I'm keeping it here for reference in case I need it again later.
+#
+# - name: See if that bullshit cloud shit is installed
+#   stat:
+#     path: /var/lib/cloud
+#   register: cloud_bullshit
+#
+# - debug:
+#     msg: Bullshit cloud bullshit is installed
+#   when: cloud_bullshit.stat.exists
+#
+# - name: Disable cloud init bullshit
+#   file:
+#     path: /etc/cloud/cloud-init.disabled
+#     state: touch
+#   when: cloud_bullshit.stat.exists
+#
+# - name: Update bullshit cloud configuration file
+#   lineinfile:
+#     regexp: "^hostname.*"
+#     line: "hostname: {{ hostname }}"
+#     dest: /var/lib/cloud/seed/nocloud-net/user-data
+#   when: cloud_bullshit.stat.exists
+#   # `cloud-init clean ; cloud-init init` will fix things if the hostname
+#   # is wrong. The previous disabling task makes this a m00t point, but seems
+#   # like a good idea to document here what took me forever to figure out.
