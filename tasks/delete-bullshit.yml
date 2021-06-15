@@ -1,0 +1,29 @@
+
+- name: "Remove unwanted landscape bullshit"
+  apt: name=landscape-common state=absent
+
+- name: "Fuck off, Ubuntu. Nobody cares about your pet projects. Just make shit work"
+  lineinfile:
+    regexp: "ENABLED.*"
+    line: ENABLED=0
+    state: present
+    path: /etc/default/motd-news
+
+- name: "Seriously, Ubuntu. Stop it. Just, stop. You might as well go work for Microsoft or Apple"
+  # not all machines have all the same bullshit. Ignore errors if some bullshit
+  # is missing.
+  ignore_errors: True
+  file:
+    mode: 1666
+    path: '/etc/update-motd.d/{{ item }}'
+  with_items:
+    - 10-help-text
+    - 50-motd-news
+    - 85-fwupd
+    - 88-esm-announce
+    - 90-updates-available
+    - 91-release-upgrade
+    - 92-unattended-upgrades
+    - 95-hwe-eol
+    - 98-fsck-at-reboot
+    - 98-fsck-at-reboot
