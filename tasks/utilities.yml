@@ -57,13 +57,8 @@
       - htop
       - iotop
 
-- name: Install glances (Ubuntu 18.04)
-  pip: name=glances
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
-
-- name: Install glances (Ubuntu 20.04)
-  apt: name=glances
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '20.04'
+- name: Install glances
+  apt: name=glances state=latest
 
 - name: Install Git tools
   apt: name=git state=present
