@@ -1,6 +1,17 @@
+- name: "Remove unwanted landscape and other telemetry bullshit"
+  apt:
+    name:
+      - landscape-common
+      - ubuntu-report
+      - popularity-contest
+      - apport
+      - whoopsie
+      - apport
+      - symptoms
+    state: absent
 
-- name: "Remove unwanted landscape bullshit"
-  apt: name=landscape-common state=absent
+- name: "Forcibily keep that shit from coming back"
+  shell: apt-mark hold ubuntu-report popularity-contest apport whoopsie apport-symptoms
 
 - name: "Fuck off, Ubuntu. Nobody cares about your pet projects. Just make shit work"
   lineinfile:
