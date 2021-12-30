@@ -30,3 +30,4 @@
 - include: delete-bullshit.yml
   become: yes
   become_user: root
+  when: ansible_distribution == "Ubuntu"
