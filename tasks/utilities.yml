@@ -46,6 +46,12 @@
       - whois
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
 
+# - name: 'Utilities (Ubuntu 20.04)'
+#   apt:
+#     name:
+#       - imagemagick
+#   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '20.04'
+
 - name: Set VIM as default editor
   alternatives:
     name: editor

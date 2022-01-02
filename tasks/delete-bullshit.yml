@@ -9,9 +9,11 @@
       - apport
       - symptoms
     state: absent
+  when: ansible_distribution == "Ubuntu"
 
 - name: "Forcibily keep that shit from coming back"
   shell: apt-mark hold ubuntu-report popularity-contest apport whoopsie apport-symptoms
+  when: ansible_distribution == "Ubuntu"
 
 - name: "Fuck off, Ubuntu. Nobody cares about your pet projects. Just make shit work"
   lineinfile:
@@ -20,6 +22,7 @@
     state: present
     create: yes
     path: /etc/default/motd-news
+  when: ansible_distribution == "Ubuntu"
 
 - name: "Seriously, Ubuntu. Stop it. Just, stop. You might as well go work for Microsoft or Apple"
   # not all machines have all the same bullshit. Ignore errors if some bullshit
@@ -39,3 +42,16 @@
     - 95-hwe-eol
     - 98-fsck-at-reboot
     - 98-fsck-at-reboot
+  when: ansible_distribution == "Ubuntu"
+
+# https://www.reddit.com/r/linux/comments/lbu0t1/microsoft_repo_installed_on_all_raspberry_pis/
+# It seems that it's an empty file now, but I'd prefer it to not even be
+# there to begin with.
+- name: "Fuck you Microsoft, I don't want your shitty IDE"
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/apt/sources.list.d/vscode.list
+    - /etc/apt/trusted.gpg.d/microsoft.gpg
+  when: ansible_lsb.id == "Raspbian"
