@@ -1,7 +1,8 @@
 ---
 
-- name: Install python-dev libraries
+- name: Install python-dev libraries (Ubuntu 20.04)
   apt: name=python-dev
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04"
 
 - name: 'Install necessary utilities (shared)'
   apt:
@@ -62,9 +63,7 @@
     name:
       - htop
       - iotop
-
-- name: Install glances
-  apt: name=glances state=latest
+      - glances
 
 - name: Install Git tools
   apt: name=git state=present
