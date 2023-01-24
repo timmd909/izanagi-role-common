@@ -24,3 +24,6 @@
 - name: Update APT
   apt: update_cache=yes cache_valid_time={{ apt_cache_valid_time }}
   become: yes
+
+- name: Update packages
+  apt: upgrade=yes
