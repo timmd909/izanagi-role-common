@@ -25,27 +25,12 @@
       - python-setuptools
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
 
-- name: 'Utilities (Mint)'
-  apt:
-    name:
-      - locate
-      - tree
-      - whois
-  when: ansible_distribution == 'Linux Mint'
-
 - name: 'Utilities (Ubuntu 16.04)'
   apt:
     name:
       - locate
       - tree
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
-
-- name: 'Utilities (Ubuntu 18.04)'
-  apt:
-    name:
-      - mlocate
-      - whois
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
 
 # - name: 'Utilities (Ubuntu 20.04)'
 #   apt:
@@ -59,11 +44,14 @@
     path: /usr/bin/vim
 
 - name: Install top-like programs
-  apt:
-    name:
-      - htop
-      - iotop
-      - glances
+  apt: name=htop state=present
+
+- name: Install top-like programs
+  apt: name=iotop state=present
+
+- name: Install glances (Ubuntu)
+  apt: name=glances state=present
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Install Git tools
   apt: name=git state=present
