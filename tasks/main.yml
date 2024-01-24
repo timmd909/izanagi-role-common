@@ -30,3 +30,8 @@
 - include: delete-bullshit.yml
   become: yes
   become_user: root
+
+- include: borg.yml
+  become: yes
+  become_user: root
+  when: borg_backup_enabled

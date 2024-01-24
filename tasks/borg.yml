@@ -1,0 +1,18 @@
+---
+
+#
+# Note: this is only for clients backing up to a borg server
+#
+
+# sudo wget https://github.com/borgbackup/borg/releases/download/1.2.7/borg-linux64 -O /usr/local/bin/borg
+- name: Download Borg
+  get_url:
+    url: "{{ borg_download_url }}"
+    dest: /usr/local/bin/borg
+    mode: '0755'
+
+- name: Install run-backup
+  template:
+    src: usr/local/sbin/run-backup.j2
+    dest: /usr/local/sbin/run-backup
+    mode: 0700

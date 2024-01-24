@@ -29,6 +29,7 @@
 - name: "Add to /etc/fstab"
   lineinfile:
     dest: /etc/fstab
+    regexp: "swap.*sw"
     line: "{{ swapfile_path }}   none    swap    sw    0   0"
     state: present
   when: swapfile_enabled == true
@@ -40,6 +41,7 @@
 - name: "Remove from /etc/fstab"
   lineinfile:
     dest: /etc/fstab
+    regexp: "swap.*sw"
     line: "{{ swapfile_path }}   none    swap    sw    0   0"
     state: absent
   when: swapfile_enabled == false
