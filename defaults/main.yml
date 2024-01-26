@@ -31,3 +31,10 @@ borg_passphrase: "change this or it'll come to haunt you / chickens->home->roost
 borg_download_url: "https://github.com/borgbackup/borg/releases/download/1.2.7/borg-linux64"
 # ARM64/Raspberry Pi
 # borg_download_url: "https://borg.bauerj.eu/bin/borg-1.2.7-arm64"
+
+borg_backup_hour: 6
+borg_backup_minute: 40
+
+borg_compact_day: 1
+borg_compact_hour: 8
+borg_compact_minute: 20

@@ -16,3 +16,24 @@
     src: usr/local/sbin/run-backup.j2
     dest: /usr/local/sbin/run-backup
     mode: 0700
+
+- name: Install Borg compact script
+  template:
+    src: usr/local/sbin/compact-backup.j2
+    dest: /usr/local/sbin/compact-backup
+    mode: 0700
+
+- name: Install Borg backup cronjob
+  cron:
+    name: "Borg Backup"
+    job: /usr/local/sbin/run-backup
+    minute: "{{ borg_backup_minute }}"
+    hour: "{{ borg_backup_hour }}"
+
+- name: Install Borg compact cronjob
+  cron:
+    name: "Borg Compact"
+    job: /usr/local/sbin/compact-backup
+    minute: "{{ borg_compact_minute }}"
+    hour: "{{ borg_compact_hour }}"
+    day: "{{ borg_compact_day }}"

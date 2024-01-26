@@ -52,17 +52,17 @@ borg prune                        \
 
 PRUNE_EXIT=$?
 
-# actually free repo disk space by compacting segments
-
-info "Compacting repository"
-
-borg compact
-
-COMPACT_EXIT=$?
+# # actually free repo disk space by compacting segments
+#
+# info "Compacting repository"
+#
+# borg compact
+#
+# COMPACT_EXIT=$?
 
 # use highest exit code as global exit code
 GLOBAL_EXIT=$(( BACKUP_EXIT > PRUNE_EXIT ? BACKUP_EXIT : PRUNE_EXIT ))
-GLOBAL_EXIT=$(( COMPACT_EXIT > GLOBAL_EXIT ? COMPACT_EXIT : GLOBAL_EXIT ))
+# GLOBAL_EXIT=$(( COMPACT_EXIT > GLOBAL_EXIT ? COMPACT_EXIT : GLOBAL_EXIT ))
 
 if [ ${GLOBAL_EXIT} -eq 0 ]; then
     info "Backup, Prune, and Compact finished successfully"
