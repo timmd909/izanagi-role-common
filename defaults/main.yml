@@ -35,6 +35,11 @@ borg_download_url: "https://github.com/borgbackup/borg/releases/download/1.2.7/b
 borg_backup_hour: 6
 borg_backup_minute: 40
 
+borg_keep_hourly: 0   # set to N>=1 to enable
+borg_keep_daily: 7
+borg_keep_weekly: 4
+borg_keep_monthly: 6
+
 borg_compact_day: 1
 borg_compact_hour: 8
 borg_compact_minute: 20
