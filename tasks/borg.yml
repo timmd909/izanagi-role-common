@@ -36,4 +36,4 @@
     job: /usr/local/sbin/compact-backup
     minute: "{{ borg_compact_minute }}"
     hour: "{{ borg_compact_hour }}"
-    day: "{{ borg_compact_day }}"
+    weekday: "{{ borg_compact_weekday }}"
