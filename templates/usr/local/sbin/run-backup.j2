@@ -50,6 +50,7 @@ borg prune                        \
 {% if borg_keep_daily   %}  --keep-daily   {{ borg_keep_daily   }} {% endif %} \
 {% if borg_keep_weekly  %}  --keep-weekly  {{ borg_keep_weekly  }} {% endif %} \
 {% if borg_keep_monthly %}  --keep-monthly {{ borg_keep_monthly }} {% endif %}
+{% if borg_keep_yearly  %}  --keep-yearly  {{ borg_keep_yearly  }} {% endif %}
 
 
 PRUNE_EXIT=$?

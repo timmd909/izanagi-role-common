@@ -3,4 +3,4 @@
 export BORG_REPO="ssh://{{ hostname }}@alexandria.lan:22/media/repositories/{{ hostname }}"
 export BORG_PASSPHRASE="{{ borg_passphrase | default('super secret password') }}"
 
-borg compact
+borg compact --progress
