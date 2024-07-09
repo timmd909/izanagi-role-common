@@ -1,37 +1,37 @@
 ---
 
-- include: apt.yml
+- import_tasks: apt.yml
   become: yes
   become_user: root
 
-- include: utilities.yml
+- import_tasks: utilities.yml
   become: yes
   become_user: root
 
-- include: configure.yml
+- import_tasks: configure.yml
   become: yes
   become_user: root
 
-- include: pi-only.yml
+- import_tasks: pi-only.yml
   become: yes
   become_user: root
   when: ansible_lsb.id == "Raspbian"
 
-- include: misc.yml
+- import_tasks: misc.yml
   become: yes
   become_user: root
 
-- include: swapfile.yml
+- import_tasks: swapfile.yml
   become: yes
   become_user: root
 
-- include: user-env.yml
+- import_tasks: user-env.yml
 
-- include: delete-bullshit.yml
+- import_tasks: delete-bullshit.yml
   become: yes
   become_user: root
 
-- include: borg.yml
+- import_tasks: borg.yml
   become: yes
   become_user: root
   when: borg_backup_enabled
