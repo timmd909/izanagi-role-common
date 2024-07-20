@@ -11,17 +11,23 @@
     dest: /usr/local/bin/borg
     mode: '0755'
 
+- name: Install Borg config file
+  template:
+    src: etc/default/borg.j2
+    dest: "{{ borg_client_config_path }}"
+    mode: 'u=rw,g=,o'
+
 - name: Install run-backup
   template:
     src: usr/local/sbin/run-backup.j2
     dest: /usr/local/sbin/run-backup
-    mode: 0700
+    mode: 'u=rwx,g=,o'
 
 - name: Install Borg compact script
   template:
     src: usr/local/sbin/compact-backup.j2
     dest: /usr/local/sbin/compact-backup
-    mode: 0700
+    mode: 'u=rwx,g=,o='
 
 - name: Install Borg backup cronjob
   cron:
@@ -37,3 +43,9 @@
     minute: "{{ borg_compact_minute }}"
     hour: "{{ borg_compact_hour }}"
     weekday: "{{ borg_compact_weekday }}"
+
+- name: Install Borg backup mount helper
+  template:
+    src: usr/local/sbin/mount-backups.j2
+    dest: /usr/local/sbin/mount-backups
+    mode: 'u=rwx,g=,o'

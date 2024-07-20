@@ -26,6 +26,8 @@ swapfile_size: 4G
 # Switch to true to enable Borg Backup install
 borg_backup_enabled: false
 
+borg_client_config_path: /etc/default/borg
+
 borg_passphrase: "change this or it'll come to haunt you / chickens->home->roost"
 # Ubuntu x64
 borg_download_url: "https://github.com/borgbackup/borg/releases/download/1.2.7/borg-linux64"

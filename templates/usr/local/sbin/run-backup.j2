@@ -1,7 +1,6 @@
 #!/bin/bash
 
-export BORG_REPO="ssh://{{ hostname }}@alexandria.lan:22/media/repositories/{{ hostname }}"
-export BORG_PASSPHRASE="{{ borg_passphrase | default('super secret password') }}"
+. {{ borg_client_config_path }}
 
 # some helpers and error handling:
 info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+. {{ borg_client_config_path }}
+BACKUPS_DIR="/media/backups"
+
+if [ ! -e "$BACKUPS_DIR" ]; then
+  mkdir "$BACKUPS_DIR"
+fi
+
+# note: the '::' means to mount all backups as separate directories
+borg mount :: "$BACKUPS_DIR" || ( echo "Failed to mount backups" && exit 4)
+
+echo "Backups mounted at: $BACKUPS_DIR"
